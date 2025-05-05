@@ -8,7 +8,7 @@ function Footer() {
     <Box component="footer" sx={{ py: 2, px: 2, mt: 'auto', backgroundColor: (theme) => theme.palette.grey[200] }}>
       <Container maxWidth="lg">
         <Typography variant="body2" color="text.secondary" align="center">
-          {'© '}{new Date().getFullYear()}{' MedBlocks Patient App Task (@pglite/react Version).'}
+          {'© '}{new Date().getFullYear()}{' MedBlocks Patient Registry.'}
         </Typography>
       </Container>
     </Box>

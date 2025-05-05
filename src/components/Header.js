@@ -10,7 +10,7 @@ function Header() {
       <Toolbar>
          <LocalHospitalIcon sx={{ mr: 1.5, color: 'primary.main' }} />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
-          MedBlocks Patient Registry (@pglite/react)
+          MedBlocks Patient Registry
         </Typography>
       </Toolbar>
     </AppBar>
