@@ -4,6 +4,7 @@ import { PGliteProvider }  from "@electric-sql/pglite-react";
 import { PGlite } from "@electric-sql/pglite";
 import { live } from "@electric-sql/pglite/live";
 import MainLayout from "./layouts/MainLayout";
+import HomePage from "./pages/HomePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -97,6 +98,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
           </Route>
         </Routes>
       </Router>
