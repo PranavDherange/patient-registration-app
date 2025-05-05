@@ -1,9 +1,15 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+
 
 function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+          </Route>
+        </Routes>
+      </Router>
   );
 }
 
