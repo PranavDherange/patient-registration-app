@@ -3,6 +3,7 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import PatientForm from '../components/PatientForm';
+import QueryInterface from '../components/QueryInterface';
 
 function HomePage() {
   return (
@@ -18,7 +19,7 @@ function HomePage() {
         <PatientForm />
       </Grid>
       <Grid item xs={12} lg={7}>
-        // Table showing records
+        <QueryInterface />
       </Grid>
     </Grid>
   );
