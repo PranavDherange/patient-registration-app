@@ -1,8 +1,8 @@
 // src/App.js
 import React, { useEffect, useState } from "react";
 import { PGliteProvider }  from "@electric-sql/pglite-react";
-import { PGlite } from "@electric-sql/pglite";
 import { live } from "@electric-sql/pglite/live";
+import { PGliteWorker }  from "@electric-sql/pglite/worker";
 import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -32,17 +32,30 @@ function App() {
       
               console.log("compiled module")
 
-              // 3) Pass the compiled module to PGlite (it will use instantiate under the hood)
-              const client = await PGlite.create({
+              const worker = new Worker(
+                new URL("./pglite-worker.js", import.meta.url),
+                { type: "module" }
+              );
+              console.log("✅ Shared worker created");
+      
+              const pglite = new PGliteWorker(worker, {
                 dataDir:    'idb://medblocks-patients',
                 extensions: { live },
-                wasmModule: module,                                     
+                wasmModule: module
               });
+
+              // 3) Pass the compiled module to PGlite (it will use instantiate under the hood)
+              // const client = await PGlite.create({
+              //   dataDir:    'idb://medblocks-patients',
+              //   extensions: { live },
+              //   wasmModule: module,
+              //   worker
+              // });
 
               console.log("created client:")
       
               // 3) Setup schema once
-              await client.query(`
+              await pglite.query(`
                 CREATE TABLE IF NOT EXISTS patients (
                   id          SERIAL PRIMARY KEY,
                   name        TEXT    NOT NULL,
@@ -54,7 +67,7 @@ function App() {
               `);
       
               // 4) Store it so we can provide it
-              setDb(client);
+              setDb(pglite);
 
               console.log("setDb about to run")
 
