@@ -78,6 +78,9 @@ function PatientForm() {
             <Grid item xs={12} sm={6}>
               <TextField required fullWidth id="dob" label="Date of Birth" name="dob" type="date"
                 value={formData.dob} onChange={handleChange}
+                inputProps={{
+                    max: new Date().toISOString().split("T")[0]  // Ensures date must be before today
+                }}              
                 InputLabelProps={{ shrink: true }} disabled={!db || isSubmitting} />
             </Grid>
 
